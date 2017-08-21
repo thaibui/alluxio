@@ -29,3 +29,6 @@
 # User properties
 # alluxio.user.file.readtype.default=CACHE_PROMOTE
 # alluxio.user.file.writetype.default=MUST_CACHE
+alluxio.user.block.size.bytes.default=64MB
+alluxio.user.file.cache.partially.read.block=false
+alluxio.security.authorization.permission.enabled=false
