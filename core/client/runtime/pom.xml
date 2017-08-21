@@ -57,6 +57,36 @@
   </dependencies>
 
   <profiles>
+    <!-- build profile for Apache Hive -->
+    <!-- Profile used to build alluxio client jar used for Apache Hive. This will be activated by using -Phive -->
+    <!-- in the maven command line. -->
+    <profile>
+      <id>hive</id>
+      <!-- The dependencies are the same as the default dependencies, except that apache thrift, apache curator -->
+      <!-- apache thrift, apache curator are in scope provided, as they are provided by Apache Hive exec -->
+      <dependencies>
+        <dependency>
+          <groupId>org.apache.thrift</groupId>
+          <artifactId>libthrift</artifactId>
+          <scope>provided</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.curator</groupId>
+          <artifactId>curator-client</artifactId>
+          <scope>provided</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.curator</groupId>
+          <artifactId>curator-framework</artifactId>
+          <scope>provided</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.curator</groupId>
+          <artifactId>curator-recipes</artifactId>
+          <scope>provided</scope>
+        </dependency>
+      </dependencies>
+    </profile>
     <profile>
       <id>includeHadoopClient</id>
       <dependencies>
