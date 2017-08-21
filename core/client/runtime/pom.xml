@@ -68,7 +68,18 @@
         <dependency>
           <groupId>org.apache.thrift</groupId>
           <artifactId>libthrift</artifactId>
-          <scope>provided</scope>
+          <exclusions>
+            <!-- httpcomponent shoud be provided. Adding this causes AWS SDK client to complain  -->
+            <exclusion>
+              <groupId>org.apache.httpcomponents</groupId>
+              <artifactId>httpclient</artifactId>
+            </exclusion>
+            <!-- httpcomponent shoud be provided. Adding this causes AWS SDK client to complain  -->
+            <exclusion>
+              <groupId>org.apache.httpcomponents</groupId>
+              <artifactId>httpcore</artifactId>
+            </exclusion>
+          </exclusions>
         </dependency>
         <dependency>
           <groupId>org.apache.curator</groupId>
