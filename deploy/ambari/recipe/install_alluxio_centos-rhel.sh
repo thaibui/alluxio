@@ -5,4 +5,4 @@ if [ ! -d "/opt/alluxio" ]; then
 fi
 cd /opt/alluxio
 git pull
-mvn -e clean package -DskipTests -Phive -Dcheckstyle.skip=true -Dlicense.skip=true
+mvn -e clean package -DskipTests -Phive -Dcheckstyle.skip=true -Dlicense.skip=true -Dfindbugs.skip=true
