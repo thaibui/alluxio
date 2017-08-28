@@ -40,3 +40,6 @@ echo "Configuring .. $ALLUXIO_DIR/conf/alluxio-site.properties"
 cat $ALLUXIO_DIR/conf/alluxio-site.properties.template | \
     sed "s/{{master}}/$MASTER/g" \
     > $ALLUXIO_DIR/conf/alluxio-site.properties
+
+echo "Mounting ramfs for local worker using configured setting in $ALLUXIO_DIR/conf/alluxio-site.properties"
+$ALLUXIO_DIR/bin/alluxio-mount.sh Mount local
