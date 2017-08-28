@@ -3,10 +3,10 @@
 set -o errexit
 
 cp /opt/alluxio/deploy/ambari/recipe/alluxio-masterd /etc/init.d/
-#cp /opt/alluxio/deploy/ambari/recipe/alluxio-workerd /etc/init.d/
+cp /opt/alluxio/deploy/ambari/recipe/alluxio-workerd /etc/init.d/
 
 chkconfig --add alluxio-masterd
-#chkconfig --add alluxio-workerd
+chkconfig --add alluxio-workerd
 
 # Add log dir
 mkdir -p /var/log/alluxio
