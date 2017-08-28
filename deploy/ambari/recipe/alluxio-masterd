@@ -18,11 +18,11 @@ function fail {
 
 function do_start {
     $SUPERVISORD -c ${PROJECT_HOME}/deploy/ambari/recipe/master-supervisord.conf && echo "Started Alluxio master supervisord"
-    echo "Hue started"
+    echo "Alluxio master started"
 }
 
 function do_stop {
-    pkill -f "$PROJECT_HOME/deploy/ambari/recipe/master-supervisord.conf" && echo "Stopped Alluxio master supervisord, waiting for Python server to exit..."
+    pkill -f "alluxio.master.AlluxioMaster" && echo "Stopped Alluxio master supervisord, waiting for Alluxio master server to exit..."
     MASTER_PID=`pgrep -f "alluxio.master.AlluxioMaster" 2>/dev/null`
     until [ -z "$MASTER_PID" ]; do
         echo "MASTER_PID=$MASTER_PID, Waiting..."
