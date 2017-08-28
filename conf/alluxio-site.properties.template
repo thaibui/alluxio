@@ -22,6 +22,7 @@ alluxio.master.hostname={{master}}
 
 # Worker properties
 alluxio.worker.memory.size=16GB
+alluxio.worker.tieredstore.reserver.enabled=true
 alluxio.worker.tieredstore.levels=2
 alluxio.worker.tieredstore.level0.alias=MEM
 alluxio.worker.tieredstore.level0.dirs.path=/mnt/ramdisk
