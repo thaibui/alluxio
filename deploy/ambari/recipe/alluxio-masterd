@@ -22,7 +22,7 @@ function do_start {
 }
 
 function do_stop {
-    pkill -f "/opt/alluxio/deploy/ambari/recipe/master-supervisord.conf" && echo "Stopped Alluxio master supervisord, waiting for Alluxio master server to exit..."
+    pkill -f /opt/alluxio/deploy/ambari/recipe/master-supervisord.conf && echo "Stopped Alluxio master supervisord, waiting for Alluxio master server to exit..."
     MASTER_PID=`pgrep -f "/opt/alluxio/deploy/ambari/recipe/master-supervisord.conf" 2>/dev/null`
     until [ -z "$MASTER_PID" ]; do
         echo "MASTER_PID=$MASTER_PID, Waiting..."
