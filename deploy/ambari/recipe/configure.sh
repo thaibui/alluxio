@@ -37,7 +37,7 @@ echo "Alluxio installed dir: $ALLUXIO_DIR"
 echo "Master hostname: $MASTER"
 
 echo "Configuring .. $ALLUXIO_DIR/conf/alluxio-site.properties"
-cat $ALLUXIO_DIR/conf/alluxio-site.properties.template | \
+sudo -u alluxio cat $ALLUXIO_DIR/conf/alluxio-site.properties.template | \
     sed "s/{{master}}/$MASTER/g" \
     > $ALLUXIO_DIR/conf/alluxio-site.properties
 
