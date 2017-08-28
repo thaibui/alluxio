@@ -8,7 +8,7 @@
 . /etc/rc.d/init.d/functions
 . /etc/profile # make sure we are using the intended python
 PROJECT_HOME=/opt/alluxio
-SUPERVISORD=`which supervisord`
+SUPERVISORD=/usr/bin/supervisord
 
 function fail {
     logger -p error -t alluxio-masterd -i -- $1
