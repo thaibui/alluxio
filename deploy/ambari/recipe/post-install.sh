@@ -16,5 +16,8 @@ chown -R alluxio:alluxio /var/log/alluxio
 mkdir -p /var/run/alluxio
 chown -R alluxio:alluxio /var/run/alluxio
 
-# Add hue permissions to alluxio working directory
+# Add alluxio permissions to alluxio working directory
 chown -R alluxio:alluxio /opt/alluxio
+
+# Format journal local directory
+sudo -u alluxio ./bin/alluxio format -s
