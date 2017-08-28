@@ -8,6 +8,7 @@
 . /etc/rc.d/init.d/functions
 . /etc/profile # make sure we are using the intended python
 PROJECT_HOME=/opt/alluxio
+PATH=/usr/local/bin:$PATH
 SUPERVISORD=`which supervisord`
 
 function fail {
