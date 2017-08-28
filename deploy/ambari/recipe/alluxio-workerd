@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+#
+# /etc/rc.d/init.d/alluxio-workerd
+#
+# chkconfig: 2345 99 15
+# description: Alluxio Worker Service
+
+. /etc/rc.d/init.d/functions
+. /etc/profile # make sure we are using the intended python
+PROJECT_HOME=/opt/alluxio
+SUPERVISORD=`which supervisord`
+
+function fail {
+    logger -p error -t alluxio-workerd -i -- $1
+    echo "error: $2"
+    exit 1
+}
+
+function do_start {
+    $SUPERVISORD -c ${PROJECT_HOME}/deploy/ambari/recipe/worker-supervisord.conf && echo "Started Alluxio worker supervisord"
+    echo "Alluxio worker started"
+}
+
+function do_stop {
+    pkill -f /opt/alluxio/deploy/ambari/recipe/worker-supervisord.conf && echo "Stopped Alluxio worker supervisord, waiting for Alluxio worker server to exit..."
+    WORKER_PID=`pgrep -f "/opt/alluxio/deploy/ambari/recipe/worker-supervisord.conf" 2>/dev/null`
+    until [ -z "$WORKER_PID" ]; do
+        echo "WORKER_PID=$WORKER_PID, Waiting..."
+        sleep 2
+        WORKER_PID=`pgrep -f "/opt/alluxio/deploy/ambari/recipe/worker-supervisord.conf" 2>/dev/null`
+    done
+    echo "Alluxio worker was successfully stopped."
+}
+
+function do_restart {
+    do_stop
+    do_start
+}
+
+function get_status {
+    WORKER_PID=`pgrep -f alluxio.worker.AlluxioWorker 2>/dev/null`
+    if [ -z "$WORKER_PID" ]; then
+       echo "stopped"
+       return 3
+    else
+       echo "running"
+       return 0
+    fi
+}
+
+case "$1" in
+    start)
+        do_start
+    ;;
+    stop)
+        do_stop
+    ;;
+    restart)
+        do_restart
+    ;;
+    status)
+        get_status
+    ;;
+esac
