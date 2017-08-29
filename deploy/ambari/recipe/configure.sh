@@ -14,6 +14,9 @@ case $key in
     MASTER="$2"
     shift # past argument
     ;;
+    --mount-worker)
+    MOUNT_WORKER=true
+    ;;
     *)
     echo "Unknown option $key"
     exit -1
@@ -35,11 +38,15 @@ fi
 
 echo "Alluxio installed dir: $ALLUXIO_DIR"
 echo "Master hostname: $MASTER"
+echo "Mount worker: $MOUNT_WORKER"
 
 echo "Configuring .. $ALLUXIO_DIR/conf/alluxio-site.properties"
 sudo -u alluxio cat $ALLUXIO_DIR/conf/alluxio-site.properties.template | \
     sed "s/{{master}}/$MASTER/g" \
     > $ALLUXIO_DIR/conf/alluxio-site.properties
 
-echo "Mounting ramfs for local worker using configured setting in $ALLUXIO_DIR/conf/alluxio-site.properties"
-$ALLUXIO_DIR/bin/alluxio-mount.sh Mount local
+# only mount worker's ramdisk and hdd if specified
+if [ "$MOUNT_WORKER" = true ]; then
+    echo "Mounting ramfs for local worker using configured setting in $ALLUXIO_DIR/conf/alluxio-site.properties"
+    $ALLUXIO_DIR/bin/alluxio-mount.sh Mount local
+fi
