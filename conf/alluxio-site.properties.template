@@ -21,12 +21,12 @@ alluxio.master.hostname={{master}}
 # alluxio.security.authentication.type=SIMPLE
 
 # Worker properties
-alluxio.worker.memory.size=16GB
+alluxio.worker.memory.size={{worker-mem}}
 alluxio.worker.tieredstore.reserver.enabled=true
 alluxio.worker.tieredstore.levels=2
 alluxio.worker.tieredstore.level0.alias=MEM
 alluxio.worker.tieredstore.level0.dirs.path=/mnt/ramdisk
-alluxio.worker.tieredstore.level0.dirs.quota=16GB
+alluxio.worker.tieredstore.level0.dirs.quota={{worker-mem}}
 alluxio.worker.tieredstore.level0.watermark.high.ratio=0.9
 alluxio.worker.tieredstore.level0.watermark.low.ratio=0.7
 alluxio.worker.tieredstore.level1.alias=HDD
