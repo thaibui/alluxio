@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+#
+# /etc/rc.d/init.d/alluxio-proxyd
+#
+# chkconfig: 2345 99 15
+# description: Alluxio Proxy Server
+
+. /etc/rc.d/init.d/functions
+. /etc/profile # make sure we are using the intended python
+PROJECT_HOME=/opt/alluxio
+PATH=/usr/local/bin:$PATH
+SUPERVISORD=`which supervisord`
+
+function fail {
+    logger -p error -t alluxio-proxyd -i -- $1
+    echo "error: $2"
+    exit 1
+}
+
+function do_start {
+    $SUPERVISORD -c ${PROJECT_HOME}/deploy/ambari/recipe/proxy-supervisord.conf && echo "Started Alluxio proxy supervisord"
+    echo "Alluxio proxy started"
+}
+
+function do_stop {
+    pkill -f /opt/alluxio/deploy/ambari/recipe/proxy-supervisord.conf && echo "Stopped Alluxio proxy supervisord, waiting for Alluxio proxy server to exit..."
+    PROXY_PID=`pgrep -f "/opt/alluxio/deploy/ambari/recipe/proxy-supervisord.conf" 2>/dev/null`
+    until [ -z "$PROXY_PID" ]; do
+        echo "PROXY_PID=$PROXY_PID, Waiting..."
+        sleep 2
+        PROXY_PID=`pgrep -f "/opt/alluxio/deploy/ambari/recipe/proxy-supervisord.conf" 2>/dev/null`
+    done
+    echo "Alluxio proxy was successfully stopped."
+}
+
+function do_restart {
+    do_stop
+    do_start
+}
+
+function get_status {
+    PROXY_PID=`pgrep -f alluxio.proxy.AlluxioProxy 2>/dev/null`
+    if [ -z "$PROXY_PID" ]; then
+       echo "stopped"
+       return 3
+    else
+       echo "running"
+       return 0
+    fi
+}
+
+case "$1" in
+    start)
+        do_start
+    ;;
+    stop)
+        do_stop
+    ;;
+    restart)
+        do_restart
+    ;;
+    status)
+        get_status
+    ;;
+esac
