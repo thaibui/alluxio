@@ -41,3 +41,6 @@ alluxio.worker.tieredstore.level1.watermark.low.ratio=0.7
 alluxio.user.block.size.bytes.default=64MB
 alluxio.user.file.cache.partially.read.block=false
 alluxio.security.authorization.permission.enabled=false
+
+# S3 mount point share with everyone
+alluxio.underfs.object.store.mount.shared.publicly=true
