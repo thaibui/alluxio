@@ -96,6 +96,12 @@
           <artifactId>curator-recipes</artifactId>
           <scope>provided</scope>
         </dependency>
+        <!-- Log4j collided with Hive 2 LLAP daemon. It should be provided instead -->
+        <dependency>
+          <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
+          <scope>provided</scope>
+        </dependency>
       </dependencies>
     </profile>
     <profile>
