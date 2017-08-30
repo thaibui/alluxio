@@ -31,7 +31,7 @@ alluxio.worker.tieredstore.level0.watermark.high.ratio=0.9
 alluxio.worker.tieredstore.level0.watermark.low.ratio=0.7
 alluxio.worker.tieredstore.level1.alias=HDD
 alluxio.worker.tieredstore.level1.dirs.path=/hadoopfs/fs1/alluxio
-alluxio.worker.tieredstore.level1.dirs.quota=200GB
+alluxio.worker.tieredstore.level1.dirs.quota={{worker-hdd}}
 alluxio.worker.tieredstore.level1.watermark.high.ratio=0.9
 alluxio.worker.tieredstore.level1.watermark.low.ratio=0.7
 
