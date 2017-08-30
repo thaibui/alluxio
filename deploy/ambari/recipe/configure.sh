@@ -18,6 +18,10 @@ case $key in
     WORKER_MEM="$2"
     shift # past argument
     ;;
+    --worker-mem)
+    WORKER_HDD="$2"
+    shift # past argument
+    ;;
     --mount-worker)
     MOUNT_WORKER=true
     ;;
@@ -41,18 +45,25 @@ if [ -z "$MASTER" ]; then
 fi
 
 if [ -z "$WORKER_MEM" ]; then
-    echo "Worker memory not supplied. Default to `16G`"
+    echo "Worker memory not supplied. Default to `16GB`"
     WORKER_MEM=16GB
+fi
+
+if [ -z "$WORKER_HDD" ]; then
+    echo "Worker HDD not supplied. Default to `100GB`"
+    WORKER_HDD=100GB
 fi
 
 echo "Alluxio installed dir: $ALLUXIO_DIR"
 echo "Master hostname: $MASTER"
 echo "Worker memory: $WORKER_MEM"
+echo "Worker HDD: $WORKER_HDD"
 echo "Mount worker: $MOUNT_WORKER"
 
 echo "Configuring .. $ALLUXIO_DIR/conf/alluxio-site.properties"
 sudo -u alluxio cat $ALLUXIO_DIR/conf/alluxio-site.properties.template | \
     sed "s/{{master}}/$MASTER/g" | \
+    sed "s/{{worker-hdd}}/$WORKER_HDD/g" | \
     sed "s/{{worker-mem}}/$WORKER_MEM/g" \
     > $ALLUXIO_DIR/conf/alluxio-site.properties
 
