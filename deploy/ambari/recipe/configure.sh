@@ -18,8 +18,12 @@ case $key in
     WORKER_MEM="$2"
     shift # past argument
     ;;
-    --worker-mem)
+    --worker-hdd)
     WORKER_HDD="$2"
+    shift # past argument
+    ;;
+    --worker-hdd-dir)
+    WORKER_HDD_DIR="$2"
     shift # past argument
     ;;
     --mount-worker)
@@ -54,16 +58,23 @@ if [ -z "$WORKER_HDD" ]; then
     WORKER_HDD=100GB
 fi
 
+if [ -z "$WORKER_HDD_DIR" ]; then
+    echo "Worker HDD dir not supplied. Default to `/hadoopfs/fs1`"
+    WORKER_HDD_DIR=/hadoopfs/fs2
+fi
+
 echo "Alluxio installed dir: $ALLUXIO_DIR"
 echo "Master hostname: $MASTER"
 echo "Worker memory: $WORKER_MEM"
 echo "Worker HDD: $WORKER_HDD"
+echo "Worker HDD directory: $WORKER_HDD_DIR"
 echo "Mount worker: $MOUNT_WORKER"
 
 echo "Configuring .. $ALLUXIO_DIR/conf/alluxio-site.properties"
 sudo -u alluxio cat $ALLUXIO_DIR/conf/alluxio-site.properties.template | \
     sed "s/{{master}}/$MASTER/g" | \
     sed "s/{{worker-hdd}}/$WORKER_HDD/g" | \
+    sed "s/{{worker-hdd-dir}}/$WORKER_HDD_DIR/g" | \
     sed "s/{{worker-mem}}/$WORKER_MEM/g" \
     > $ALLUXIO_DIR/conf/alluxio-site.properties
 
