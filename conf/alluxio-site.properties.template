@@ -36,8 +36,8 @@ alluxio.worker.tieredstore.level1.watermark.high.ratio=0.9
 alluxio.worker.tieredstore.level1.watermark.low.ratio=0.7
 
 # User properties
-# alluxio.user.file.readtype.default=CACHE_PROMOTE
-# alluxio.user.file.writetype.default=MUST_CACHE
+alluxio.user.file.readtype.default=CACHE
+alluxio.user.file.writetype.default=MUST_CACHE
 alluxio.user.block.size.bytes.default=64MB
 alluxio.user.file.cache.partially.read.block=false
 alluxio.security.authorization.permission.enabled=false
