@@ -29,9 +29,9 @@ alluxio.worker.tieredstore.level0.dirs.path=/mnt/ramdisk
 alluxio.worker.tieredstore.level0.dirs.quota={{worker-mem}}
 alluxio.worker.tieredstore.level0.watermark.high.ratio=0.9
 alluxio.worker.tieredstore.level0.watermark.low.ratio=0.7
-alluxio.worker.tieredstore.level1.alias=HDD
-alluxio.worker.tieredstore.level1.dirs.path={{worker-hdd-dir}}
-alluxio.worker.tieredstore.level1.dirs.quota={{worker-hdd}}
+alluxio.worker.tieredstore.level1.alias=SDD
+alluxio.worker.tieredstore.level1.dirs.path={{worker-sdd-dir}}
+alluxio.worker.tieredstore.level1.dirs.quota={{worker-sdd}}
 alluxio.worker.tieredstore.level1.watermark.high.ratio=0.9
 alluxio.worker.tieredstore.level1.watermark.low.ratio=0.7
 
