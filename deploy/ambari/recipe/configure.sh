@@ -70,11 +70,14 @@ echo "Worker HDD: $WORKER_HDD"
 echo "Worker HDD directory: $WORKER_HDD_DIR"
 echo "Mount worker: $MOUNT_WORKER"
 
+# directory contains / characters which will mess up sed. so, escape them.
+_WORKER_HDD_DIR=`sed "s/\//\/\//g"`
+
 echo "Configuring .. $ALLUXIO_DIR/conf/alluxio-site.properties"
 sudo -u alluxio cat $ALLUXIO_DIR/conf/alluxio-site.properties.template | \
     sed "s/{{master}}/$MASTER/g" | \
     sed "s/{{worker-hdd}}/$WORKER_HDD/g" | \
-    sed "s/{{worker-hdd-dir}}/$WORKER_HDD_DIR/g" | \
+    sed "s/{{worker-hdd-dir}}/$_WORKER_HDD_DIR/g" | \
     sed "s/{{worker-mem}}/$WORKER_MEM/g" \
     > $ALLUXIO_DIR/conf/alluxio-site.properties
 
