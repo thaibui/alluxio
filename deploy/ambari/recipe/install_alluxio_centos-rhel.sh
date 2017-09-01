@@ -52,7 +52,7 @@ while true; do
     fi
 done
 EOL
-chmod +x /tmp/sym-link-alluxio-client-jar.sh
+chmod +x /tmp/symlink-alluxio-client-jar.sh
 
 # run it in the background
 /tmp/symlink-alluxio-client-jar.sh > /var/log/symlink-alluxio-client.log 2>&1 &
