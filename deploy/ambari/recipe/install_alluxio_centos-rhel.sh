@@ -17,25 +17,25 @@ while true; do
         while true; do
             if [ ! -z "/usr/hdp/$HDP_VERSION" ]; then
                 while true; do
-                    if [ -d "/usr/hdp/$HDP_VERSION/hive-server2" ]; then
-                        mkdir -p /usr/hdp/$HDP_VERSION/hive-server2/auxlib
+                    if [ -d "/usr/hdp/$HDP_VERSION/hive" ]; then
+                        mkdir -p /usr/hdp/$HDP_VERSION/hive/auxlib
                         ln -s /opt/alluxio/core/client/runtime/target/alluxio-core-client-runtime-1.5.1-SNAPSHOT-jar-with-dependencies.jar \
-                          /usr/hdp/$HDP_VERSION/hive-server2/auxlib/alluxio-core-client-runtime.jar
+                          /usr/hdp/$HDP_VERSION/hive/auxlib/alluxio-core-client-runtime.jar
                         break;
                     else
-                        echo "A hive-server2 app is not installed under /usr/hdp/$HDP_VERSION. sleep 10s ..."
+                        echo "A hive app is not installed under /usr/hdp/$HDP_VERSION. sleep 10s ..."
                         sleep 10;
                     fi
                 done
 
                 while true; do
-                    if [ -d "/usr/hdp/$HDP_VERSION/hive-server2-hive2" ]; then
-                        mkdir -p /usr/hdp/$HDP_VERSION/hive-server2-hive2/auxlib
+                    if [ -d "/usr/hdp/$HDP_VERSION/hive2" ]; then
+                        mkdir -p /usr/hdp/$HDP_VERSION/hive2/auxlib
                         ln -s /opt/alluxio/core/client/runtime/target/alluxio-core-client-runtime-1.5.1-SNAPSHOT-jar-with-dependencies.jar \
-                          /usr/hdp/$HDP_VERSION/hive-server2-hive2/auxlib/alluxio-core-client-runtime.jar
+                          /usr/hdp/$HDP_VERSION/hive2/auxlib/alluxio-core-client-runtime.jar
                         break;
                     else
-                        echo "A hive-server2-hive2 app is not installed under /usr/hdp/$HDP_VERSION. sleep 10s ..."
+                        echo "A hive2 app is not installed under /usr/hdp/$HDP_VERSION. sleep 10s ..."
                         sleep 10;
                     fi
                 done
