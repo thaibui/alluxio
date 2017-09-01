@@ -10,6 +10,7 @@ mvn -e clean package -DskipTests -Phadoop-2.7 -Phive -Dcheckstyle.skip=true -Dli
 # link alluxio client runtime jar to hive-server2 and hive client auxlib directory
 
 # get the current HDP version. assuming that there's only 1 version running, else it will break the automation
+cat >/tmp/symlink-alluxio-client-jar.sh <<"EOL"
 while true; do
     if [ -d "/usr/hdp" ]; then
         HDP_VERSION=`ls /usr/hdp/ | grep -v current`
@@ -50,3 +51,8 @@ while true; do
         sleep 10;
     fi
 done
+EOL
+chmod +x /tmp/sym-link-alluxio-client-jar.sh
+
+# run it in the background
+/tmp/symlink-alluxio-client-jar.sh > /var/log/symlink-alluxio-client.log 2>&1 &
