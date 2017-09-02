@@ -18,12 +18,12 @@ case $key in
     WORKER_MEM="$2"
     shift # past argument
     ;;
-    --worker-sdd)
-    WORKER_SDD="$2"
+    --worker-ssd)
+    WORKER_SSD="$2"
     shift # past argument
     ;;
-    --worker-sdd-dir)
-    WORKER_SDD_DIR="$2"
+    --worker-ssd-dir)
+    WORKER_SSD_DIR="$2"
     shift # past argument
     ;;
     --mount-worker)
@@ -53,28 +53,28 @@ if [ -z "$WORKER_MEM" ]; then
     WORKER_MEM=16GB
 fi
 
-if [ -z "$WORKER_SDD" ]; then
-    echo "Worker SDD size not supplied. Default to `100GB`"
-    WORKER_SDD=100GB
+if [ -z "$WORKER_SSD" ]; then
+    echo "Worker SSD size not supplied. Default to `100GB`"
+    WORKER_SSD=100GB
 fi
 
-if [ -z "$WORKER_SDD_DIR" ]; then
-    echo "Worker SDD dir not supplied. Default to `/hadoopfs/fs2`"
-    WORKER_SDD_DIR=/hadoopfs/fs2
+if [ -z "$WORKER_SSD_DIR" ]; then
+    echo "Worker SSD dir not supplied. Default to `/hadoopfs/fs2`"
+    WORKER_SSD_DIR=/hadoopfs/fs2
 fi
 
 echo "Alluxio installed dir: $ALLUXIO_DIR"
 echo "Master hostname: $MASTER"
 echo "Worker memory: $WORKER_MEM"
-echo "Worker SDD: $WORKER_SDD"
-echo "Worker SDD directory: $WORKER_SDD_DIR"
+echo "Worker SSD: $WORKER_SSD"
+echo "Worker SSD directory: $WORKER_SSD_DIR"
 echo "Mount worker: $MOUNT_WORKER"
 
 echo "Configuring .. $ALLUXIO_DIR/conf/alluxio-site.properties"
 sudo -u alluxio cat $ALLUXIO_DIR/conf/alluxio-site.properties.template | \
     sed "s/{{master}}/$MASTER/g" | \
-    sed "s/{{worker-sdd}}/$WORKER_SDD/g" | \
-    sed "s|{{worker-sdd-dir}}|$WORKER_SDD_DIR|g" | \
+    sed "s/{{worker-ssd}}/$WORKER_SSD/g" | \
+    sed "s|{{worker-ssd-dir}}|$WORKER_SSD_DIR|g" | \
     sed "s/{{worker-mem}}/$WORKER_MEM/g" \
     > $ALLUXIO_DIR/conf/alluxio-site.properties
 
