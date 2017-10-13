@@ -14,6 +14,9 @@
 
 # Common properties
 alluxio.master.hostname={{master}}
+alluxio.debug=true
+alluxio.integration.master.resource.cpu=2
+alluxio.integration.master.resource.mem=4096MB
 # alluxio.underfs.address=${alluxio.work.dir}/underFSStorage
 
 # Security properties
@@ -21,6 +24,8 @@ alluxio.master.hostname={{master}}
 # alluxio.security.authentication.type=SIMPLE
 
 # Worker properties
+alluxio.integration.worker.resource.cpu=2
+alluxio.integration.worker.resource.mem=2048MB
 alluxio.worker.memory.size={{worker-mem}}
 alluxio.worker.tieredstore.reserver.enabled=true
 alluxio.worker.tieredstore.levels=2
@@ -34,6 +39,9 @@ alluxio.worker.tieredstore.level1.dirs.path={{worker-ssd-dir}}
 alluxio.worker.tieredstore.level1.dirs.quota={{worker-ssd}}
 alluxio.worker.tieredstore.level1.watermark.high.ratio=0.9
 alluxio.worker.tieredstore.level1.watermark.low.ratio=0.7
+
+# s3a config
+alluxio.underfs.s3a.inherit_acl=false
 
 # User properties
 alluxio.user.file.readtype.default=CACHE
