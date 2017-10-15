@@ -44,7 +44,7 @@ alluxio.worker.tieredstore.level1.watermark.low.ratio=0.7
 alluxio.underfs.s3a.inherit_acl=false
 
 # User properties
-alluxio.user.file.readtype.default=CACHE
+alluxio.user.file.readtype.default=CACHE_PROMOTE
 alluxio.user.file.writetype.default=MUST_CACHE
 alluxio.user.block.size.bytes.default=256MB
 alluxio.user.file.cache.partially.read.block=false
