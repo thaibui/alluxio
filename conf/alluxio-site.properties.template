@@ -26,25 +26,17 @@ alluxio.integration.master.resource.mem=4096MB
 # Worker properties
 alluxio.integration.worker.resource.cpu=2
 alluxio.integration.worker.resource.mem=2048MB
-alluxio.worker.memory.size={{worker-mem}}
 alluxio.worker.tieredstore.reserver.enabled=true
-alluxio.worker.tieredstore.levels=2
-alluxio.worker.tieredstore.level0.alias=MEM
-alluxio.worker.tieredstore.level0.dirs.path=/mnt/ramdisk
-alluxio.worker.tieredstore.level0.dirs.quota={{worker-mem}}
-alluxio.worker.tieredstore.level0.watermark.high.ratio=0.8
-alluxio.worker.tieredstore.level0.watermark.low.ratio=0.5
-alluxio.worker.tieredstore.level1.alias=SSD
-alluxio.worker.tieredstore.level1.dirs.path={{worker-ssd-dir}}
-alluxio.worker.tieredstore.level1.dirs.quota={{worker-ssd}}
-alluxio.worker.tieredstore.level1.watermark.high.ratio=0.9
-alluxio.worker.tieredstore.level1.watermark.low.ratio=0.7
+alluxio.worker.tieredstore.levels=1
+alluxio.worker.tieredstore.level0.alias=SSD
+alluxio.worker.tieredstore.level0.dirs.path={{worker-ssd-dir}}
+alluxio.worker.tieredstore.level0.dirs.quota={{worker-ssd}}
 
 # s3a config
 alluxio.underfs.s3a.inherit_acl=false
 
 # User properties
-alluxio.user.file.readtype.default=CACHE_PROMOTE
+alluxio.user.file.readtype.default=CACHE
 alluxio.user.file.writetype.default=MUST_CACHE
 alluxio.user.block.size.bytes.default=256MB
 alluxio.user.file.cache.partially.read.block=false
