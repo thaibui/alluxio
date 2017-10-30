@@ -8,8 +8,8 @@ set -e
 # Install Maven
 if ! [ -x "$(command -v mvn)" ]; then
   echo 'Error: maven is not installed. Installing it ...' >&2
-  MAVEN_VERSION=3.5.0
-  wget http://apache.mirrors.ionfish.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz -O /tmp/apache-maven-$MAVEN_VERSION-bin.tar.gz
+  MAVEN_VERSION=3.5.2
+  wget http://apache.mirrors.tds.net/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz -O /tmp/apache-maven-$MAVEN_VERSION-bin.tar.gz
   tar -xzvf /tmp/apache-maven-$MAVEN_VERSION-bin.tar.gz -C /opt
   export PATH=/opt/apache-maven-$MAVEN_VERSION/bin:$PATH
 fi
