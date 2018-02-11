@@ -19,7 +19,7 @@ while true; do
                 while true; do
                     if [ -d "/usr/hdp/$HDP_VERSION/hive" ]; then
                         mkdir -p /usr/hdp/$HDP_VERSION/hive/auxlib
-                        ln -s /opt/alluxio/core/client/runtime/target/alluxio-core-client-runtime-1.5.1-SNAPSHOT-jar-with-dependencies.jar \
+                        ln -s /opt/alluxio/core/client/runtime/target/alluxio-core-client-runtime-1.7.1-SNAPSHOT-jar-with-dependencies.jar \
                           /usr/hdp/$HDP_VERSION/hive/auxlib/alluxio-core-client-runtime.jar
                         break;
                     else
@@ -31,7 +31,7 @@ while true; do
                 while true; do
                     if [ -d "/usr/hdp/$HDP_VERSION/hive2" ]; then
                         mkdir -p /usr/hdp/$HDP_VERSION/hive2/auxlib
-                        ln -s /opt/alluxio/core/client/runtime/target/alluxio-core-client-runtime-1.5.1-SNAPSHOT-jar-with-dependencies.jar \
+                        ln -s /opt/alluxio/core/client/runtime/target/alluxio-core-client-runtime-1.7.1-SNAPSHOT-jar-with-dependencies.jar \
                           /usr/hdp/$HDP_VERSION/hive2/auxlib/alluxio-core-client-runtime.jar
                         break;
                     else
