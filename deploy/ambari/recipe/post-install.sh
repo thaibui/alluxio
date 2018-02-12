@@ -23,7 +23,7 @@ chown -R alluxio:alluxio /opt/alluxio
 
 # Add all extension jars to /opt/alluxio/lib
 mkdir /opt/alluxio/lib
-for f in `ls /opt/alluxio/underfs/*/target/*1.7.1-SNAPSHOT.jar`; do
+for f in `ls /opt/alluxio/underfs/*/target/*-jar-with-dependencies.jar`; do
     ln -s $f /opt/alluxio/lib
 done
 
