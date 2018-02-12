@@ -49,17 +49,17 @@ if [ -z "$MASTER" ]; then
 fi
 
 if [ -z "$WORKER_MEM" ]; then
-    echo "Worker memory not supplied. Default to `16GB`"
+    echo "Worker memory not supplied. Default to 16GB"
     WORKER_MEM=16GB
 fi
 
 if [ -z "$WORKER_SSD" ]; then
-    echo "Worker SSD size not supplied. Default to `100GB`"
+    echo "Worker SSD size not supplied. Default to 100GB"
     WORKER_SSD=100GB
 fi
 
 if [ -z "$WORKER_SSD_DIR" ]; then
-    echo "Worker SSD dir not supplied. Default to `/hadoopfs/fs2`"
+    echo "Worker SSD dir not supplied. Default to /hadoopfs/fs2"
     WORKER_SSD_DIR=/hadoopfs/fs2
 fi
 
