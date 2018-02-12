@@ -21,5 +21,11 @@ chown -R alluxio:alluxio /var/run/alluxio
 # Add alluxio permissions to alluxio working directory
 chown -R alluxio:alluxio /opt/alluxio
 
+# Add all extension jars to /opt/alluxio/lib
+mkdir /opt/alluxio/lib
+for f in `ls /opt/alluxio/underfs/*/target/*1.7.1-SNAPSHOT.jar`; do
+    ln -s $f /opt/alluxio/lib
+done
+
 # Format journal local directory
 sudo -u alluxio ./bin/alluxio format -s
