@@ -9,17 +9,17 @@ mvn -e clean package -DskipTests -Phadoop-2.7 -Phive -Dcheckstyle.skip=true -Dli
 
 # link alluxio client runtime jar to hive-server2 and hive client auxlib directory
 
-# get the current HDP version. assuming that there's only 1 version running, else it will break the automation
+# get the current HDP version. assuming that there's only 1 version running, else it will just grab the first version
 cat >/tmp/symlink-alluxio-client-jar.sh <<"EOL"
 while true; do
     if [ -d "/usr/hdp" ]; then
-        HDP_VERSION=`ls /usr/hdp/ | grep -v current`
+        HDP_VERSION=`ls /usr/hdp/ | grep -v current | head -1`
         while true; do
             if [ ! -z "/usr/hdp/$HDP_VERSION" ]; then
                 while true; do
                     if [ -d "/usr/hdp/$HDP_VERSION/hive" ]; then
                         mkdir -p /usr/hdp/$HDP_VERSION/hive/auxlib
-                        ln -s /opt/alluxio/core/client/runtime/target/alluxio-core-client-runtime-1.7.1-SNAPSHOT-jar-with-dependencies.jar \
+                        ln -s /opt/alluxio/core/client/runtime/target/alluxio-core-client-runtime-1.7.2-SNAPSHOT-jar-with-dependencies.jar \
                           /usr/hdp/$HDP_VERSION/hive/auxlib/alluxio-core-client-runtime.jar
                         break;
                     else
@@ -31,7 +31,7 @@ while true; do
                 while true; do
                     if [ -d "/usr/hdp/$HDP_VERSION/hive2" ]; then
                         mkdir -p /usr/hdp/$HDP_VERSION/hive2/auxlib
-                        ln -s /opt/alluxio/core/client/runtime/target/alluxio-core-client-runtime-1.7.1-SNAPSHOT-jar-with-dependencies.jar \
+                        ln -s /opt/alluxio/core/client/runtime/target/alluxio-core-client-runtime-1.7.2-SNAPSHOT-jar-with-dependencies.jar \
                           /usr/hdp/$HDP_VERSION/hive2/auxlib/alluxio-core-client-runtime.jar
                         break;
                     else
