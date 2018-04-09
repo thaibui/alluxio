@@ -29,3 +29,6 @@ done
 
 # Format journal local directory
 sudo -u alluxio ./bin/alluxio format -s
+
+# Add alluxio underFSStorage dir
+mkdir -p /opt/alluxio/underFSStorage
