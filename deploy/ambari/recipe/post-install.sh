@@ -32,3 +32,4 @@ sudo -u alluxio ./bin/alluxio format -s
 
 # Add alluxio underFSStorage dir
 mkdir -p /opt/alluxio/underFSStorage
+chown -R alluxio:alluxio /opt/alluxio/underFSStorage
