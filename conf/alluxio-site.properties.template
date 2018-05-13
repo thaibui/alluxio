@@ -22,6 +22,9 @@ alluxio.integration.master.resource.mem=4096MB
 # is built and configured for Alluxio and more.
 alluxio.master.journal.type=NOOP
 
+# worker-2-master has a very short heartbeat workers can come/leave fast
+alluxio.master.worker.timeout=17s
+
 # Security properties
 # alluxio.security.authorization.permission.enabled=true
 # alluxio.security.authentication.type=SIMPLE
