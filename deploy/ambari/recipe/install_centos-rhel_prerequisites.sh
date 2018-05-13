@@ -9,7 +9,7 @@ set -e
 if ! [ -x "$(command -v mvn)" ]; then
   echo 'Error: maven is not installed. Installing it ...' >&2
   MAVEN_VERSION=3.5.3
-  aws s3 ls s3://bdap-private-artifacts/maven/apache-maven-$MAVEN_VERSION-bin.tar.gz /tmp/apache-maven-$MAVEN_VERSION-bin.tar.gz
+  aws s3 cp s3://bdap-private-artifacts/maven/apache-maven-$MAVEN_VERSION-bin.tar.gz /tmp/apache-maven-$MAVEN_VERSION-bin.tar.gz
   tar -xzvf /tmp/apache-maven-$MAVEN_VERSION-bin.tar.gz -C /opt
   export PATH=/opt/apache-maven-$MAVEN_VERSION/bin:$PATH
 fi
