@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+set -e
 set -o errexit
 
 cp /opt/alluxio/deploy/ambari/recipe/alluxio-masterd /etc/init.d/
@@ -22,7 +22,7 @@ chown -R alluxio:alluxio /var/run/alluxio
 chown -R alluxio:alluxio /opt/alluxio
 
 # Add all extension jars to /opt/alluxio/lib
-mkdir /opt/alluxio/lib
+mkdir -p /opt/alluxio/lib
 for f in `ls /opt/alluxio/underfs/*/target/*-jar-with-dependencies.jar`; do
     ln -s $f /opt/alluxio/lib
 done

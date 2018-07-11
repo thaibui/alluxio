@@ -2,7 +2,7 @@
 #
 # Pre-installation script that ensures the required user and group are created.
 #
-
+set -e
 set -o errexit
 
 function ensure_user_and_group_exist {
