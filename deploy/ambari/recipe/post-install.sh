@@ -10,6 +10,10 @@ chkconfig --add alluxio-masterd
 chkconfig --add alluxio-workerd
 chkconfig --add alluxio-proxyd
 
+# Increase nofile and nproc limits for alluxio users
+mkdir -p /etc/security/limits.d
+cp /opt/alluxio/deploy/ambari/recipe/limits.d-alluxio.conf /etc/security/limits.d/alluxio.conf
+
 # Add log dir
 mkdir -p /var/log/alluxio
 chown -R alluxio:alluxio /var/log/alluxio
