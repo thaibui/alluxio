@@ -50,3 +50,10 @@ alluxio.security.authorization.permission.enabled=false
 
 # S3 mount point share with everyone
 alluxio.underfs.object.store.mount.shared.publicly=true
+
+# More stable S3 access when there's really big queries
+alluxio.user.ufs.block.read.location.policy=alluxio.client.block.policy.DeterministicHashPolicy
+alluxio.underfs.s3.threads.max=1024
+alluxio.underfs.s3.admin.threads.max=8
+alluxio.underfs.s3.upload.threads.max=8
+alluxio.worker.network.netty.block.reader.threads.max=16
