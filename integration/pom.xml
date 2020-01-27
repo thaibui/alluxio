@@ -31,6 +31,6 @@
   </properties>
 
   <modules>
-    <module>fuse</module>
+<!--    <module>fuse</module>-->
   </modules>
 </project>
